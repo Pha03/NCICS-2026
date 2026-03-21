@@ -1,0 +1,146 @@
+# Generated from protocoast-notebook conda environment.yml
+# Skipped (system/conda-only): awscliv2, basemap, code-server, git, git-lfs, gmt, nomkl, ocl-icd-system
+# Renamed: matplotlib-base -> matplotlib, bioconda::fitter -> fitter
+
+# Core scientific
+numpy
+scipy
+matplotlib
+pandas
+numba
+joblib
+scikit-image
+scikit-learn
+seaborn
+tabulate
+pooch
+lxml
+lz4
+
+# Xarray ecosystem
+xarray
+cf_xarray
+cftime
+nc-time-axis
+xarrayutils
+xesmf
+xmip
+xoak
+xugrid
+xrlint
+
+# Dask ecosystem
+dask
+distributed
+dask-gateway
+dask-labextension
+cachey
+rechunker
+streamz
+flox
+coiled
+
+# Geospatial
+cartopy
+pyproj
+shapely
+geopandas
+rasterio
+rasterstats
+fiona
+pyresample
+rioxarray
+dask-geopandas
+# gdal>=3.8  # requires system gdal-config — skipped; rasterio/fiona/geopandas use bundled wheels
+odc-stac
+odc-loader
+leafmap
+lonboard
+geoviews
+datashader
+
+# Cloud / storage
+fsspec>=2023.05
+s3fs
+gcsfs
+zarr>=3
+kerchunk
+virtualizarr
+icechunk
+fastparquet
+
+# HDF5 / NetCDF
+h5py>3.11
+h5netcdf
+h5coro
+hdf5plugin
+
+# Intake
+intake
+intake-erddap
+intake-esm
+intake-xarray
+
+# STAC / planetary
+pystac
+pystac-client
+planetary-computer
+odc-stac
+xpystac
+xstac
+rustac
+
+# Visualization
+hvplot
+hvsampledata
+bqplot
+ipyleaflet
+ipympl
+ipywidgets
+pyviz_comms
+cmocean
+graphviz
+
+# Jupyter / JupyterLab
+jupyterlab
+jupyter-book
+jupyter-resource-usage
+jupyter-server-proxy>=4.1.1
+jupyter-vscode-proxy
+jupyter_bokeh
+jupyterlab-favorites
+jupyterlab-geojson
+jupyterlab-git
+jupyterlab-h5web>=12.0.0
+jupytext
+nbgitpuller>=1.2.1
+dask-labextension
+ipykernel
+
+# Remote sensing / oceanography
+erddapy
+intake-erddap
+copernicusmarine
+harmony-py
+icepyx
+itslive
+sliderule>=3.6.0
+h5coro
+pyextremes
+pydap
+# pynco  # no Python 3.12 compatible release
+spectral
+
+# Other tools
+cubed[diagnostics]
+cmake
+conda-lock
+python-dotenv
+python-gist
+gh-scoped-creds
+pqdm
+fitter
+websockify>=0.10
+
+# pip-only
+git+https://github.com/dcherian/rolodex@main

@@ -1,0 +1,11 @@
+# Generated from eopf-notebook conda environment.yml
+# All packages available on PyPI with bundled wheels
+
+xarray-eopf>=0.2.5
+zarr<3
+hvplot
+datashader
+geoviews
+pystac-client
+pyproj
+ipykernel
