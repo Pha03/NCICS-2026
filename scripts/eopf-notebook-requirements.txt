@@ -9,3 +9,6 @@ geoviews
 pystac-client
 pyproj
 ipykernel
+jupyter-server-proxy>=4.1.1
+jupyter_bokeh
+pyviz_comms

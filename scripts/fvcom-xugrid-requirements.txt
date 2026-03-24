@@ -1,0 +1,33 @@
+# Minimal environment for FVCOM_xugrid.ipynb
+
+# Core
+xarray
+zarr>=3
+dask
+numpy
+pandas
+
+# Unstructured grid
+xugrid
+
+# Intake / S3
+intake
+intake-xarray
+s3fs
+
+# Visualization
+panel
+datashader
+geoviews
+colorcet
+
+# hvplot from OpenScienceComputing fork (adds xugrid trimesh support)
+git+https://github.com/OpenScienceComputing/hvplot.git
+
+fastparquet
+
+# Jupyter kernel + proxy support (required for Bokeh server in Coder/proxied envs)
+ipykernel
+jupyter-server-proxy>=4.1.1
+jupyter_bokeh
+pyviz_comms
