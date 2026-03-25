@@ -56,12 +56,14 @@ function setStatus(msg, cls = '') {
   statusEl.className = cls
 }
 
-const zoomEl = document.getElementById('zoom-display')
-function updateZoom() {
-  zoomEl.textContent = `zoom: ${map.getZoom().toFixed(2)}`
+const MAX_LEVEL = 3  // pyramid has 4 levels (0 = full res, 3 = coarsest)
+const levelEl = document.getElementById('level-display')
+function updateLevel() {
+  const level = Math.min(Math.max(0, Math.floor(map.getZoom())), MAX_LEVEL)
+  levelEl.textContent = `level: ${level}`
 }
-map.on('zoom', updateZoom)
-map.on('load', updateZoom)
+map.on('zoom', updateLevel)
+map.on('load', updateLevel)
 
 // ---------------------------------------------------------------------------
 // Open IceChunk store (lazy singleton, URL resolved from STAC)
