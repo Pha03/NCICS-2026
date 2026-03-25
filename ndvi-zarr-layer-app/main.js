@@ -59,7 +59,7 @@ function setStatus(msg, cls = '') {
 const MAX_LEVEL = 3  // pyramid has 4 levels (0 = full res, 3 = coarsest)
 const levelEl = document.getElementById('level-display')
 function updateLevel() {
-  const level = Math.min(Math.max(0, Math.floor(map.getZoom())), MAX_LEVEL)
+  const level = MAX_LEVEL - Math.min(Math.max(0, Math.floor(map.getZoom())), MAX_LEVEL)
   levelEl.textContent = `level: ${level}`
 }
 map.on('zoom', updateLevel)
