@@ -56,6 +56,13 @@ function setStatus(msg, cls = '') {
   statusEl.className = cls
 }
 
+const zoomEl = document.getElementById('zoom-display')
+function updateZoom() {
+  zoomEl.textContent = `zoom: ${map.getZoom().toFixed(2)}`
+}
+map.on('zoom', updateZoom)
+map.on('load', updateZoom)
+
 // ---------------------------------------------------------------------------
 // Open IceChunk store (lazy singleton, URL resolved from STAC)
 // ---------------------------------------------------------------------------
