@@ -1,0 +1,242 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/zarr/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/datacube/v2.2.0/schema.json"
+  ],
+  "id": "noaa-cdr-ndvi-icechunk@TF8SVRDCRCC58SKCVK20",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -180.0,
+          -90.0
+        ],
+        [
+          180.0,
+          -90.0
+        ],
+        [
+          180.0,
+          90.0
+        ],
+        [
+          -180.0,
+          90.0
+        ],
+        [
+          -180.0,
+          -90.0
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -180.0,
+    -90.0,
+    180.0,
+    90.0
+  ],
+  "properties": {
+    "start_datetime": "2000-01-01T00:00:00Z",
+    "end_datetime": "2000-01-05T00:00:00Z",
+    "title": "NOAA CDR NDVI \u2014 Virtual Icechunk",
+    "description": "Virtual Zarr references to the NOAA Climate Data Record (CDR) of AVHRR NDVI v5 stored as an Icechunk repository on Cloudflare R2. Chunk data remains on the original AWS S3 source bucket `noaa-cdr-ndvi-pds`.",
+    "datetime": null,
+    "cube:dimensions": {
+      "time": {
+        "extent": [
+          "2000-01-01T00:00:00Z",
+          "2000-01-05T00:00:00Z"
+        ],
+        "description": "time",
+        "step": "P1DT0H0M0S",
+        "type": "temporal"
+      },
+      "longitude": {
+        "axis": "x",
+        "extent": [
+          -179.97500610351562,
+          179.97500610351562
+        ],
+        "description": "longitude",
+        "reference_system": 4326,
+        "type": "spatial"
+      },
+      "latitude": {
+        "axis": "y",
+        "extent": [
+          -89.97499084472656,
+          89.9749984741211
+        ],
+        "description": "latitude",
+        "reference_system": 4326,
+        "type": "spatial"
+      }
+    },
+    "cube:variables": {
+      "NDVI": {
+        "type": "data",
+        "description": "NOAA Climate Data Record of Normalized Difference Vegetation Index",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "1",
+        "attrs": {
+          "long_name": "NOAA Climate Data Record of Normalized Difference Vegetation Index",
+          "units": "1",
+          "valid_range": [
+            -1000,
+            10000
+          ],
+          "grid_mapping": "crs",
+          "standard_name": "normalized_difference_vegetation_index"
+        },
+        "shape": [
+          5,
+          3600,
+          7200
+        ]
+      },
+      "QA": {
+        "type": "data",
+        "description": "Quality Assurance",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "flag_masks": [
+            2,
+            4,
+            8,
+            16,
+            32,
+            64,
+            128,
+            256,
+            512,
+            1024,
+            2048,
+            4096,
+            8192,
+            16384,
+            -32768
+          ],
+          "flag_meanings": "cloudy cloud_shadow water sunglint dense_dark_vegetation night ch1_to_5_valid ch1_invalid ch2_invalid ch3_invalid ch4_invalid ch5_invalid rho3_invalid BRDF_corr_problem polar_flag",
+          "long_name": "Quality Assurance",
+          "grid_mapping": "crs"
+        },
+        "shape": [
+          5,
+          3600,
+          7200
+        ]
+      },
+      "lat_bnds": {
+        "type": "data",
+        "dimensions": [
+          "latitude",
+          "nv"
+        ],
+        "attrs": {},
+        "shape": [
+          3600,
+          2
+        ]
+      },
+      "TIMEOFDAY": {
+        "type": "data",
+        "description": "Time since Start of Data Day",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "long_name": "Time since Start of Data Day",
+          "valid_range": [
+            0,
+            2399
+          ],
+          "grid_mapping": "crs"
+        },
+        "shape": [
+          5,
+          3600,
+          7200
+        ]
+      },
+      "lon_bnds": {
+        "type": "data",
+        "dimensions": [
+          "longitude",
+          "nv"
+        ],
+        "attrs": {},
+        "shape": [
+          7200,
+          2
+        ]
+      }
+    }
+  },
+  "links": [],
+  "assets": {
+    "ndvi-cdr-icechunk@TF8SVRDCRCC58SKCVK20": {
+      "href": "s3://osc-pub/ndvi-cdr-icechunk/",
+      "type": "application/vnd.zarr+icechunk",
+      "title": "NOAA CDR NDVI \u2014 Virtual Icechunk Store (R2)",
+      "zarr:consolidated": false,
+      "zarr:zarr_format": 3,
+      "icechunk:snapshot_id": "TF8SVRDCRCC58SKCVK20",
+      "storage:refs": [
+        "r2-osc-pub"
+      ],
+      "vrt:hrefs": [
+        {
+          "key": "noaa-cdr-ndvi-pds",
+          "href": "./ndvi_cdr_stac_item.json#/assets/noaa-cdr-ndvi-pds"
+        }
+      ],
+      "roles": [
+        "data",
+        "references",
+        "virtual",
+        "latest-version"
+      ]
+    },
+    "noaa-cdr-ndvi-pds": {
+      "href": "s3://noaa-cdr-ndvi-pds/data/",
+      "type": "application/x-netcdf",
+      "title": "NOAA CDR NDVI \u2014 Source NetCDF files (AWS S3)",
+      "storage:refs": [
+        "aws-s3-noaa-cdr-ndvi-pds"
+      ],
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "storage:schemes": {
+    "r2-osc-pub": {
+      "type": "aws-s3",
+      "platform": "https://9cbdcb4884f86a6779032ae561e474a5.r2.cloudflarestorage.com",
+      "bucket": "osc-pub",
+      "region": "not-used",
+      "endpoint_url": "https://9cbdcb4884f86a6779032ae561e474a5.r2.cloudflarestorage.com"
+    },
+    "aws-s3-noaa-cdr-ndvi-pds": {
+      "type": "aws-s3",
+      "platform": "https://{bucket}.s3.{region}.amazonaws.com",
+      "bucket": "noaa-cdr-ndvi-pds",
+      "region": "us-east-1",
+      "anonymous": true
+    }
+  }
+}
