@@ -1,11 +1,13 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  // Sub-path when deployed to GitHub Pages at /NCICS-2026/ndvi-zarr-layer/
-  // In dev this is overridden by the dev server serving from /
   base: process.env.NODE_ENV === 'production'
-    ? '/NCICS-2026/'
+    ? '/NCICS-2026/zarr-layer-demo/'
     : '/',
+
+  build: {
+    outDir: 'dist/zarr-layer-demo',
+  },
 
   server: {
     host: '0.0.0.0',

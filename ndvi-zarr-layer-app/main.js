@@ -3,12 +3,28 @@ import { ZarrLayer } from '@carbonplan/zarr-layer'
 import { IcechunkStore } from '@carbonplan/icechunk-js'
 
 // ---------------------------------------------------------------------------
-// Config
-// Replace ICECHUNK_URL with your R2 public URL once the bucket is public,
-// e.g. https://pub-<hash>.r2.dev/ndvi-cdr-pyramid
-// or   https://<accountId>.r2.cloudflarestorage.com/osc-pub/ndvi-cdr-pyramid
+// Config — derive icechunk store URL from STAC item on R2
 // ---------------------------------------------------------------------------
-const ICECHUNK_URL = import.meta.env.VITE_ICECHUNK_URL
+const STAC_URL = import.meta.env.VITE_STAC_URL
+
+async function getIcechunkUrl() {
+  const resp = await fetch(STAC_URL)
+  if (!resp.ok) throw new Error(`STAC fetch failed: ${resp.status} ${STAC_URL}`)
+  const item = await resp.json()
+
+  // Find the pyramid asset (has icechunk:snapshot_id)
+  const asset = Object.values(item.assets).find(a => a['icechunk:snapshot_id'])
+  if (!asset) throw new Error('No icechunk asset found in STAC item')
+
+  const ref    = asset['storage:refs'][0]
+  const scheme = item['storage:schemes'][ref]
+  const bucket = scheme.bucket
+  // href is s3://bucket/prefix/ — extract the prefix
+  const prefix = asset.href.replace(`s3://${bucket}/`, '').replace(/\/$/, '')
+
+  // Use the public custom-domain URL (CORS-enabled) rather than the S3 endpoint
+  return `https://r2-pub.openscicomp.io/${prefix}`
+}
 
 const DATES = [
   '2000-01-01',
@@ -40,16 +56,27 @@ function setStatus(msg, cls = '') {
   statusEl.className = cls
 }
 
+const MAX_LEVEL = 3  // pyramid has 4 levels (0 = full res, 3 = coarsest)
+const levelEl = document.getElementById('level-display')
+function updateLevel() {
+  const level = MAX_LEVEL - Math.min(Math.max(0, Math.floor(map.getZoom())), MAX_LEVEL)
+  levelEl.textContent = `level: ${level}`
+}
+map.on('zoom', updateLevel)
+map.on('load', updateLevel)
+
 // ---------------------------------------------------------------------------
-// Open IceChunk store (lazy singleton)
+// Open IceChunk store (lazy singleton, URL resolved from STAC)
 // ---------------------------------------------------------------------------
 let _storePromise = null
 function getStore() {
-  return (_storePromise ??= IcechunkStore.open(ICECHUNK_URL, {
-    branch: 'main',
-    formatVersion: 'v1',
-    cache: 'no-store',
-  }).catch((err) => {
+  return (_storePromise ??= getIcechunkUrl().then(url =>
+    IcechunkStore.open(url, {
+      branch: 'main',
+      formatVersion: 'v1',
+      cache: 'no-store',
+    })
+  ).catch((err) => {
     _storePromise = null
     throw err
   }))
@@ -95,18 +122,19 @@ let state = {
 async function addLayer() {
   setStatus('loading store…')
 
-  let store
+  let store, icechunkUrl
   try {
+    icechunkUrl = await getIcechunkUrl()
     store = await getStore()
   } catch (err) {
-    setStatus('store error — check VITE_ICECHUNK_URL', 'error')
+    setStatus('store error — check VITE_STAC_URL', 'error')
     console.error('IcechunkStore.open failed:', err)
     return
   }
 
   layer = new ZarrLayer({
     id: 'ndvi',
-    source: ICECHUNK_URL,
+    source: icechunkUrl,
     store,
     variable: 'NDVI',
     clim: state.clim,
@@ -118,13 +146,11 @@ async function addLayer() {
     spatialDimensions: { lat: 'latitude', lon: 'longitude' },
     latIsAscending: false,
     bounds: [-180, -90, 180, 90],
-    onLoadingStateChange: (loading) => {
-      if (!loading) setStatus('ready', 'ready')
-    },
   })
 
   map.addLayer(layer)
   setStatus('rendering…')
+  map.once('idle', () => setStatus('ready', 'ready'))
 }
 
 map.on('load', addLayer)
@@ -132,12 +158,20 @@ map.on('load', addLayer)
 // ---------------------------------------------------------------------------
 // Controls
 // ---------------------------------------------------------------------------
+function debounce(fn, ms) {
+  let timer
+  return (...args) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), ms) }
+}
+
 const timeSlider = document.getElementById('time-slider')
 const timeLabel  = document.getElementById('time-label')
+const debouncedSetTime = debounce((t) => {
+  layer?.setSelector({ time: { selected: t, type: 'index' } })
+}, 150)
 timeSlider.addEventListener('input', () => {
   state.time = Number(timeSlider.value)
   timeLabel.textContent = DATES[state.time]
-  layer?.setSelector({ time: { selected: state.time, type: 'index' } })
+  debouncedSetTime(state.time)
 })
 
 const colormapSelect = document.getElementById('colormap-select')
