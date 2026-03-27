@@ -1,0 +1,2572 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/zarr/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/datacube/v2.2.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json"
+  ],
+  "id": "patmosx-icechunk@FB3W3D3RS02HWABK1TG0",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -180.0,
+          -90.0
+        ],
+        [
+          180.0,
+          -90.0
+        ],
+        [
+          180.0,
+          90.0
+        ],
+        [
+          -180.0,
+          90.0
+        ],
+        [
+          -180.0,
+          -90.0
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -180.0,
+    -90.0,
+    180.0,
+    90.0
+  ],
+  "properties": {
+    "start_datetime": "1981-08-25T00:00:00Z",
+    "end_datetime": "1981-08-31T00:04:15Z",
+    "title": "PATMOS-x AVHRR reflectance, brightness temperature and cloud product CDRs",
+    "description": "Virtual Zarr representation of NOAA PATMOS-x cloud properties stored as an Icechunk repository. Includes ASC/DES passes with time_coverage_start-derived timestamps.",
+    "platform": "NOAA-07",
+    "instruments": [
+      "AVHRR",
+      "HIRS"
+    ],
+    "patmosx:pass_directions": [
+      "asc",
+      "des"
+    ],
+    "gsd": 0.1,
+    "cube:dimensions": {
+      "time": {
+        "extent": [
+          "1981-08-25T00:00:00Z",
+          "1981-08-31T00:04:15Z"
+        ],
+        "type": "temporal"
+      },
+      "longitude": {
+        "axis": "x",
+        "extent": [
+          -179.95057510118932,
+          179.95057510118932
+        ],
+        "description": "longitude",
+        "reference_system": 4326,
+        "type": "spatial"
+      },
+      "latitude": {
+        "axis": "y",
+        "extent": [
+          -89.95056755584665,
+          89.95056755584665
+        ],
+        "description": "latitude",
+        "reference_system": 4326,
+        "type": "spatial"
+      }
+    },
+    "cube:variables": {
+      "acha_info": {
+        "type": "data",
+        "description": "processing information for ACHA (0=no/1=yes) 1:Cloud Height Attempted 2:Bias Correction Employed 3:Ice Cloud Retrieval 4:Local Radiative Center Processing Used 5:Multi-layer Retrieval 6:Lower Cloud Interpolation Used 7:Boundary Layer Inversion Assumed",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "standard_name": "quality_flag",
+          "long_name": "processing information for ACHA (0=no/1=yes) 1:Cloud Height Attempted 2:Bias Correction Employed 3:Ice Cloud Retrieval 4:Local Radiative Center Processing Used 5:Multi-layer Retrieval 6:Lower Cloud Interpolation Used 7:Boundary Layer Inversion Assumed",
+          "flag_masks": [
+            1,
+            2,
+            4,
+            8,
+            16,
+            32,
+            64
+          ],
+          "flag_meanings": "Cloud_Height_Attempted  Bias_Correction_Employed  Ice_Cloud_Retrieval  Local_Radiative_Center_Processing_Used  Multi_Layer_Retrieval  Lower_Cloud_Interpolation_Used  Boundary_Layer_Inversion_Assumed"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cld_emiss_acha": {
+        "type": "data",
+        "description": "cloud emissivity at the nominal wavelength of 11 microns, determined from the AWG cloud height algorithm - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "standard_name": "convective_cloud_longwave_emissivity",
+          "long_name": "cloud emissivity at the nominal wavelength of 11 microns, determined from the AWG cloud height algorithm - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            -0.20000000298023224,
+            1.2000000476837158
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "bad_pixel_mask": {
+        "type": "data",
+        "description": "mask that distinguishes good(0) from bad(1) pixels",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "standard_name": "quality_flag",
+          "long_name": "mask that distinguishes good(0) from bad(1) pixels"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cld_cwp_dcomp": {
+        "type": "data",
+        "description": "cloud top water path from DCOMP",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "g m-2",
+        "attrs": {
+          "units": "g m-2",
+          "long_name": "cloud top water path from DCOMP",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            1200.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "bayes_mask_sfc_type": {
+        "type": "data",
+        "description": "surface type used to select look-up table for ECM2 cloud mask",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "long_name": "surface type used to select look-up table for ECM2 cloud mask",
+          "flag_values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "flag_meanings": "deep_water shallow_water unfrozen_land frozen_land arctic antarctic desert"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cld_height_acha": {
+        "type": "data",
+        "description": "Cloud Top Height from ACHA - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "m",
+        "attrs": {
+          "units": "m",
+          "standard_name": "height_at_cloud_top",
+          "long_name": "Cloud Top Height from ACHA - NOAA CDR",
+          "ancillary_variables": "cld_height_uncer_acha",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            75.0,
+            20000.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cld_beta_acha": {
+        "type": "data",
+        "description": "cloud 11/12 micron beta value determined from the split-window method",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "long_name": "cloud 11/12 micron beta value determined from the split-window method",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.20000000298023224,
+            2.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cld_height_lower_acha": {
+        "type": "data",
+        "description": "Cloud Top Height of Lower Level Cloud from ACHA",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "m",
+        "attrs": {
+          "units": "m",
+          "standard_name": "height_of_lower_cloud",
+          "long_name": "Cloud Top Height of Lower Level Cloud from ACHA",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            75.0,
+            20000.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cld_height_co2": {
+        "type": "data",
+        "description": "Cloud Top Height from CO2 Slicing",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "m",
+        "attrs": {
+          "units": "m",
+          "standard_name": "height_at_cloud_top",
+          "long_name": "Cloud Top Height from CO2 Slicing",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            75.0,
+            20000.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "acha_quality": {
+        "type": "data",
+        "description": "quality flags for ACHA products 1:Processed (0=no,1=yes) 2:valid Tc retrieval (1=yes,0=no) 3:valid ec retrieval (1=yes,0=no) 4:valid beta retrieval (1=yes,0=no) 5:degraded Tc retrieval (1=yes,0=no) 6:degraded ec retrieval (1=yes,0=no) 7:degraded beta retrieval (1=yes,0=no)",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "standard_name": "quality_flag",
+          "long_name": "quality flags for ACHA products 1:Processed (0=no,1=yes) 2:valid Tc retrieval (1=yes,0=no) 3:valid ec retrieval (1=yes,0=no) 4:valid beta retrieval (1=yes,0=no) 5:degraded Tc retrieval (1=yes,0=no) 6:degraded ec retrieval (1=yes,0=no) 7:degraded beta retrieval (1=yes,0=no)",
+          "flag_masks": [
+            1,
+            2,
+            4,
+            8,
+            16,
+            32,
+            64
+          ],
+          "flag_meanings": "Processed  valid_Tc_retrieval  valid_ec_retrieval  valid_beta_retrieval  degraded_Tc_retrieval  degraded_ec_retrieval  degraded_beta_retrieval"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cld_opd_dcomp_unc": {
+        "type": "data",
+        "description": "uncertainty in the log10 cloud optical depth at the nominal wavelength of 0.65 microns, determined from DCOMP; see attributes for channels used",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "long_name": "uncertainty in the log10 cloud optical depth at the nominal wavelength of 0.65 microns, determined from DCOMP; see attributes for channels used",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            -0.20000000298023224,
+            160.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cld_press_acha": {
+        "type": "data",
+        "description": "Cloud Top Pressure from ACHA - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "hPa",
+        "attrs": {
+          "units": "hPa",
+          "standard_name": "air_pressure_at_cloud_top",
+          "ancillary_variables": "cld_press_uncer_acha",
+          "long_name": "Cloud Top Pressure from ACHA - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            50.0,
+            1100.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cld_press_uncer_acha": {
+        "type": "data",
+        "description": "Cloud Top Pressure Uncertainty from ACHA",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "hPa",
+        "attrs": {
+          "units": "hPa",
+          "long_name": "Cloud Top Pressure Uncertainty from ACHA",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            1000.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cld_reff_acha": {
+        "type": "data",
+        "description": "effective radius of cloud particles determined from ACHA; see attributes for channels used - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "micron",
+        "attrs": {
+          "units": "micron",
+          "standard_name": "effective_radius_of_cloud_condensed_water_particles_at_cloud_top",
+          "long_name": "effective radius of cloud particles determined from ACHA; see attributes for channels used - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            160.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cld_reff_dcomp": {
+        "type": "data",
+        "description": "effective radius of cloud particles determined from DCOMP; see attributes for channels used - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "micron",
+        "attrs": {
+          "units": "micron",
+          "ancillary_variables": "cld_reff_dcomp_unc",
+          "standard_name": "effective_radius_of_cloud_condensed_water_particles_at_cloud_top",
+          "long_name": "effective radius of cloud particles determined from DCOMP; see attributes for channels used - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            160.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cld_reff_dcomp_unc": {
+        "type": "data",
+        "description": "uncertainty in the log10 effective radius of cloud particle determined from DCOMP; see attributes for channels used",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "micron",
+        "attrs": {
+          "units": "micron",
+          "long_name": "uncertainty in the log10 effective radius of cloud particle determined from DCOMP; see attributes for channels used",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            160.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cld_temp_acha": {
+        "type": "data",
+        "description": "ACHA air temperature at cloud top - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "units": "K",
+          "standard_name": "air_temperature_at_cloud_top",
+          "ancillary_variables": "cld_temp_uncer_acha",
+          "long_name": "ACHA air temperature at cloud top - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            160.0,
+            320.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cld_height_uncer_acha": {
+        "type": "data",
+        "description": "Cloud Top Height Uncertainty from ACHA",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "m",
+        "attrs": {
+          "units": "m",
+          "long_name": "Cloud Top Height Uncertainty from ACHA",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            10000.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cld_opd_acha": {
+        "type": "data",
+        "description": "cloud optical depth at the nominal wavelength of 0.65 microns, determined from ACHA - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "1",
+        "attrs": {
+          "units": "1",
+          "standard_name": "atmosphere_optical_thickness_due_to_cloud",
+          "long_name": "cloud optical depth at the nominal wavelength of 0.65 microns, determined from ACHA - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            -0.20000000298023224,
+            8.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cld_opd_dcomp": {
+        "type": "data",
+        "description": "cloud optical depth at the nominal wavelength of 0.65 microns, determined from DCOMP - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "1",
+        "attrs": {
+          "units": "1",
+          "standard_name": "atmosphere_optical_thickness_due_to_cloud",
+          "ancillary_variables": "cld_opd_dcomp_unc",
+          "long_name": "cloud optical depth at the nominal wavelength of 0.65 microns, determined from DCOMP - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            -0.20000000298023224,
+            160.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cld_temp_lower_acha": {
+        "type": "data",
+        "description": "ACHA air temperature at lower cloud top",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "units": "K",
+          "standard_name": "air_temperature_at_cloud_top",
+          "long_name": "ACHA air temperature at lower cloud top",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            160.0,
+            320.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cld_temp_prior_acha": {
+        "type": "data",
+        "description": "ACHA prior air temperature at cloud top",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "units": "K",
+          "standard_name": "air_temperature_at_cloud_top",
+          "long_name": "ACHA prior air temperature at cloud top",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            160.0,
+            320.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cloud_phase": {
+        "type": "data",
+        "description": "integer classification of the cloud phase including clear and aerosol type,0=clear,1=water,2=supercooled water,3=mixed,4=ice,5=unknown",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "standard_name": "thermodynamic_phase_of_cloud_water_particles_at_cloud_top",
+          "long_name": "integer classification of the cloud phase including clear and aerosol type,0=clear,1=water,2=supercooled water,3=mixed,4=ice,5=unknown",
+          "flag_values": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "flag_meanings": "clear  water  supercooled_water  mixed  ice  unknown"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cloud_probability": {
+        "type": "data",
+        "description": "probability of a pixel being cloudy from the Bayesian cloud mask",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "long_name": "probability of a pixel being cloudy from the Bayesian cloud mask",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            1.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cld_temp_uncer_acha": {
+        "type": "data",
+        "description": "uncertainty in ACHA cloud top temperature",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "units": "K",
+          "long_name": "uncertainty in ACHA cloud top temperature",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            100.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cloud_fraction_uncertainty": {
+        "type": "data",
+        "description": "CCL uncertainty in the total cloud fraction",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "long_name": "CCL uncertainty in the total cloud fraction",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            1.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cloud_fraction": {
+        "type": "data",
+        "description": "CCL total cloud fraction",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "standard_name": "cloud_area_fraction",
+          "ancillary_variables": "cloud_fraction_uncertainty",
+          "long_name": "CCL total cloud fraction",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            1.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cloud_transmission_0_65um_nom": {
+        "type": "data",
+        "description": "cloud albedo at 0.65 microns nominal from DCOMP",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "standard_name": "cloud_albedo",
+          "long_name": "cloud albedo at 0.65 microns nominal from DCOMP",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            1.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cloud_type": {
+        "type": "data",
+        "description": "integer classification of the cloud type including clear and aerosol type,0=clear,1=probably clear,2=fog,3=water,4=supercooled water,5=mixed,6=opaque_ice,7=cirrus,8=overlapping,9=overshooting,10=unknown,11=dust,12=smoke,13=fire",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "long_name": "integer classification of the cloud type including clear and aerosol type,0=clear,1=probably clear,2=fog,3=water,4=supercooled water,5=mixed,6=opaque_ice,7=cirrus,8=overlapping,9=overshooting,10=unknown,11=dust,12=smoke,13=fire",
+          "flag_values": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "flag_meanings": "clear  probably_clear  fog  water  supercooled_water  mixed  opaque_ice  cirrus  overlapping  overshooting  unknown  dust  smoke  fire"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "cloud_mask": {
+        "type": "data",
+        "description": "integer classification of the cloud mask including clear=0, probably-clear=1, probably-cloudy=2, cloudy=3",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "standard_name": "cloud_binary_mask",
+          "long_name": "integer classification of the cloud mask including clear=0, probably-clear=1, probably-cloudy=2, cloudy=3",
+          "flag_values": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "flag_meanings": "clear  probably_clear  probably_cloudy  cloudy"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "dcomp_quality": {
+        "type": "data",
+        "description": "quality flags for DCOMP products 1:Processed (0=no,1=yes) 2:valid COD retrieval (0=yes,1=no) 3:valid REF retrieval (0=yes,1=no) 4:degraded COD retrieval (0=no,1=degraded) 5:degraded REF retrieval (0=no,1=degraded) 6:convergency (0=no,1=yes) 7:glint (0=no,1=yes)",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "standard_name": "quality_flag",
+          "long_name": "quality flags for DCOMP products 1:Processed (0=no,1=yes) 2:valid COD retrieval (0=yes,1=no) 3:valid REF retrieval (0=yes,1=no) 4:degraded COD retrieval (0=no,1=degraded) 5:degraded REF retrieval (0=no,1=degraded) 6:convergency (0=no,1=yes) 7:glint (0=no,1=yes)",
+          "flag_masks": [
+            1,
+            2,
+            4,
+            8,
+            16,
+            32,
+            64
+          ],
+          "flag_meanings": "Processed valid_COD_retrieval valid_REF_retrieval degraded_COD_retrieval degraded_REF_retrieval convergency glint"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "hirsavhrr_rtvl_qflag": {
+        "type": "data",
+        "description": "HIRS/AVHRR Clear Sky Moisture RTVL quality flag",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "long_name": "HIRS/AVHRR Clear Sky Moisture RTVL quality flag",
+          "flag_values": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "flag_meanings": "best_quality possibly_contaminated unphysical no_retrieval"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "dcomp_info": {
+        "type": "data",
+        "description": "processing flags for DCOMP 1:land/sea mask (0=land,1=sea) 2:day/night mask (0=Day,1=Night) 3:twilight (65-82 solar zenith) (0=no,1=yes) 4:snow (0=no,1= snow) 5:sea-ice (0=no,1=sea-ice) 6:phase (0=liquid,1=ice) 7:thick_cloud (0=no,1=yes) 8:thin_cloud (0=no,1=yes)",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "long_name": "processing flags for DCOMP 1:land/sea mask (0=land,1=sea) 2:day/night mask (0=Day,1=Night) 3:twilight (65-82 solar zenith) (0=no,1=yes) 4:snow (0=no,1= snow) 5:sea-ice (0=no,1=sea-ice) 6:phase (0=liquid,1=ice) 7:thick_cloud (0=no,1=yes) 8:thin_cloud (0=no,1=yes)",
+          "flag_masks": [
+            1,
+            2,
+            4,
+            8,
+            16,
+            32,
+            64,
+            128
+          ],
+          "flag_meanings": "land_or_sea_mask day_or_night_mask twilight_@65-82_solar_zenith snow sea_ice liquid_or_ice_phase thick_cloud thin_cloud"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "hirsavhrr_total_precipitable_water": {
+        "type": "data",
+        "description": "HIRS/AVHRR Clear Sky Total Precipitable Water integrated from the mixing ratio profile between the surface and 10 hPa pressure level - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "cm",
+        "attrs": {
+          "units": "cm",
+          "standard_name": "lwe_thickness_of_atmosphere_mass_content_of_water_vapor",
+          "long_name": "HIRS/AVHRR Clear Sky Total Precipitable Water integrated from the mixing ratio profile between the surface and 10 hPa pressure level - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            10.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "glint_mask": {
+        "type": "data",
+        "description": "glint mask (0=no) (1=yes)",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "1",
+        "attrs": {
+          "units": "1",
+          "standard_name": "sunlit_binary_mask",
+          "long_name": "glint mask (0=no) (1=yes)"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "hirsavhrr_water_vapor_content_layerhigh": {
+        "type": "data",
+        "description": "HIRS/AVHRR Clear Sky Integrated Water Vapor Content integrated from the mix ratio prof between 440 and 10 hPa pres level",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "cm",
+        "attrs": {
+          "units": "cm",
+          "standard_name": "lwe_thickness_of_atmosphere_mass_content_of_water_vapor",
+          "long_name": "HIRS/AVHRR Clear Sky Integrated Water Vapor Content integrated from the mix ratio prof between 440 and 10 hPa pres level",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            0.6000000238418579
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "hirsavhrr_water_vapor_content_layerlow": {
+        "type": "data",
+        "description": "HIRS/AVHRR Clear Sky Integrated Water Vapor Content integrated from the mix ratio prof between the sfc and 680 hPa pres level",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "cm",
+        "attrs": {
+          "units": "cm",
+          "standard_name": "lwe_thickness_of_atmosphere_mass_content_of_water_vapor",
+          "long_name": "HIRS/AVHRR Clear Sky Integrated Water Vapor Content integrated from the mix ratio prof between the sfc and 680 hPa pres level",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            10.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "ice_cloud_probability": {
+        "type": "data",
+        "description": "probability of a pixel being an ice cloud from the Bayesian cloud mask",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "long_name": "probability of a pixel being an ice cloud from the Bayesian cloud mask",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            1.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "hirsavhrr_water_vapor_content_layermid": {
+        "type": "data",
+        "description": "HIRS/AVHRR Clear Sky Integrated Water Vapor Content integrated from the mix ratio prof between 680 and 440 hPa pres level",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "cm",
+        "attrs": {
+          "units": "cm",
+          "standard_name": "lwe_thickness_of_atmosphere_mass_content_of_water_vapor",
+          "long_name": "HIRS/AVHRR Clear Sky Integrated Water Vapor Content integrated from the mix ratio prof between 680 and 440 hPa pres level",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            3.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "land_class": {
+        "type": "data",
+        "description": "land classes and values:shallow ocean=0,land=1,coastline=2,shallow inland water=3,ephemeral water=4,deep inland water=5,moderate ocean=6,deep ocean=7",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "standard_name": "area_type",
+          "long_name": "land classes and values:shallow ocean=0,land=1,coastline=2,shallow inland water=3,ephemeral water=4,deep inland water=5,moderate ocean=6,deep ocean=7",
+          "flag_values": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "flag_meanings": "ocean  land  coastline  shallow_inland_water  ephemeral_water  deep_inland_water  moderate_ocean  deep_ocean"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "longitude_pc": {
+        "type": "data",
+        "description": "longitude parallax-corrected using cloud height",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "degrees_east",
+        "attrs": {
+          "units": "degrees_east",
+          "long_name": "longitude parallax-corrected using cloud height",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            -180.0,
+            180.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "prior_cloud_probability": {
+        "type": "data",
+        "description": "prior probability of a pixel being cloudy from the Bayesian cloud mask",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "long_name": "prior probability of a pixel being cloudy from the Bayesian cloud mask",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            1.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "latitude_pc": {
+        "type": "data",
+        "description": "latitude parallax-corrected using cloud height",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "degrees_north",
+        "attrs": {
+          "units": "degrees_north",
+          "long_name": "latitude parallax-corrected using cloud height",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            -90.0,
+            90.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "refl_0_65um_nom_counts": {
+        "type": "data",
+        "description": "counts at the AVHRR nominal wavelength of 0.65um",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "source": "AVHRR",
+          "long_name": "counts at the AVHRR nominal wavelength of 0.65um"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "refl_0_65um_nom_stddev_3x3": {
+        "type": "data",
+        "description": "top of atmosphere reflectance at the AVHRR nominal wavelength of 0.65um standard deviation over a 3x3 pixel array at the nominal wavelength of 0_65um",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "%",
+        "attrs": {
+          "source": "AVHRR",
+          "units": "%",
+          "long_name": "top of atmosphere reflectance at the AVHRR nominal wavelength of 0.65um standard deviation over a 3x3 pixel array at the nominal wavelength of 0_65um",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            20.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "refl_0_65um_nom": {
+        "type": "data",
+        "description": "top of atmosphere reflectance at the AVHRR nominal wavelength of 0.65um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "%",
+        "attrs": {
+          "source": "AVHRR",
+          "units": "%",
+          "standard_name": "toa_bidirectional_reflectance",
+          "long_name": "top of atmosphere reflectance at the AVHRR nominal wavelength of 0.65um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            -2.0,
+            120.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "refl_0_86um_nom": {
+        "type": "data",
+        "description": "top of atmosphere reflectance at the AVHRR nominal wavelength of 0.86um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "%",
+        "attrs": {
+          "source": "AVHRR",
+          "units": "%",
+          "standard_name": "toa_bidirectional_reflectance",
+          "long_name": "top of atmosphere reflectance at the AVHRR nominal wavelength of 0.86um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            -2.0,
+            120.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "refl_0_86um_nom_counts": {
+        "type": "data",
+        "description": "counts at the AVHRR nominal wavelength of 0.86um",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "source": "AVHRR",
+          "long_name": "counts at the AVHRR nominal wavelength of 0.86um"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "refl_1_60um_nom_counts": {
+        "type": "data",
+        "description": "counts at the AVHRR nominal wavelength of 1.60um",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "source": "AVHRR",
+          "long_name": "counts at the AVHRR nominal wavelength of 1.60um"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "relative_azimuth_angle": {
+        "type": "data",
+        "description": "relative azimuth angle in degrees. 0 is the principal plane looking towards sun",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "degrees",
+        "attrs": {
+          "units": "degrees",
+          "standard_name": "relative_sensor_azimuth_angle",
+          "long_name": "relative azimuth angle in degrees. 0 is the principal plane looking towards sun",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            180.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "refl_3_75um_nom": {
+        "type": "data",
+        "description": "top of atmosphere reflectance at the AVHRR nominal wavelength of 3.75um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "%",
+        "attrs": {
+          "source": "AVHRR",
+          "units": "%",
+          "standard_name": "toa_bidirectional_reflectance",
+          "long_name": "top of atmosphere reflectance at the AVHRR nominal wavelength of 3.75um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            -20.0,
+            80.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "refl_1_60um_nom": {
+        "type": "data",
+        "description": "top of atmosphere reflectance at the AVHRR nominal wavelength of 1.60um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "%",
+        "attrs": {
+          "source": "AVHRR",
+          "units": "%",
+          "standard_name": "toa_bidirectional_reflectance",
+          "long_name": "top of atmosphere reflectance at the AVHRR nominal wavelength of 1.60um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            -2.0,
+            120.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "scan_line_number": {
+        "type": "data",
+        "description": "scan line number",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "long_name": "scan line number"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "sensor_azimuth_angle": {
+        "type": "data",
+        "description": "sensor azimuth angle in degrees from north, positive values are clockwise from north",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "degrees",
+        "attrs": {
+          "units": "degrees",
+          "standard_name": "sensor_azimuth_angle",
+          "long_name": "sensor azimuth angle in degrees from north, positive values are clockwise from north",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            -180.0,
+            180.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "scan_element_number": {
+        "type": "data",
+        "description": "scan element index of the pixel chosen for inclusion in level-2b",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "long_name": "scan element index of the pixel chosen for inclusion in level-2b"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "scan_line_time": {
+        "type": "data",
+        "description": "time for the scan line in fractional hours",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "long_name": "time for the scan line in fractional hours"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "solar_azimuth_angle": {
+        "type": "data",
+        "description": "solar azimuth angle in degrees from north, pixel to sun, positive values are clockwise from north",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "degrees",
+        "attrs": {
+          "units": "degrees",
+          "standard_name": "solar_azimuth_angle",
+          "long_name": "solar azimuth angle in degrees from north, pixel to sun, positive values are clockwise from north",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            -180.0,
+            180.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_11_0um_nom_sounder": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 11.0um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "HIRS",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 11.0um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            180.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_11_0um_nom_clear_sky": {
+        "type": "data",
+        "description": "clear-sky top of atmosphere brightness temperature at the AVHRR nominal wavelength of 11.0um",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "clear-sky top of atmosphere brightness temperature at the AVHRR nominal wavelength of 11.0um",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            180.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "surface_pressure_nwp": {
+        "type": "data",
+        "description": "surface pressure from NWP",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "hPa",
+        "attrs": {
+          "units": "hPa",
+          "standard_name": "surface_air_pressure",
+          "long_name": "surface pressure from NWP",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            700.0,
+            1100.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_11_0um_nom": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the AVHRR nominal wavelength of 11.0um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "AVHRR",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the AVHRR nominal wavelength of 11.0um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            180.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "sensor_zenith_angle": {
+        "type": "data",
+        "description": "sensor zenith for each pixel measured in degrees from nadir",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "degrees",
+        "attrs": {
+          "units": "degrees",
+          "standard_name": "sensor_zenith_angle",
+          "long_name": "sensor zenith for each pixel measured in degrees from nadir",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            90.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "solar_zenith_angle": {
+        "type": "data",
+        "description": "solar zenith for each pixel measured in degrees away from the sun (0=looking at sun)",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "degrees",
+        "attrs": {
+          "units": "degrees",
+          "standard_name": "solar_zenith_angle",
+          "long_name": "solar zenith for each pixel measured in degrees away from the sun (0=looking at sun)",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            180.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "surface_type": {
+        "type": "data",
+        "description": "UMD surface type: water=0,evergreen_needle=1,evergreen_broad=2,deciduous_needle=3,deciduous_broad=4,mixed_forest=5,woodlands=6,wooded_grass=7closed_shrubs=8,open_shrubs=9,grasses=10,croplands=11,bare=12,urban=13",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "standard_name": "area_type",
+          "long_name": "UMD surface type: water=0,evergreen_needle=1,evergreen_broad=2,deciduous_needle=3,deciduous_broad=4,mixed_forest=5,woodlands=6,wooded_grass=7closed_shrubs=8,open_shrubs=9,grasses=10,croplands=11,bare=12,urban=13",
+          "flag_values": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "flag_meanings": "water  evergreen_needle  evergreen_broad  deciduous_needle  deciduous_broad  mixed_forest  woodlands  wooded_grass  closed_shrubs  open_shrubs  grasses  croplands  bare  urban"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "snow_class": {
+        "type": "data",
+        "description": "snow classes and values:no snow/ice=1,sea_ice=2,snow=3",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "long_name": "snow classes and values:no snow/ice=1,sea_ice=2,snow=3",
+          "flag_values": [
+            1,
+            2,
+            3
+          ],
+          "flag_meanings": "no_snow_or_ice sea_ice snow"
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "surface_temperature_retrieved": {
+        "type": "data",
+        "description": "surface temperature retrieved using atmospherically corrected 11 micron radiance",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "units": "K",
+          "standard_name": "sea_surface_temperature",
+          "long_name": "surface temperature retrieved using atmospherically corrected 11 micron radiance",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            220.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_12_0um_nom_sounder": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 12.0um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "HIRS",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 12.0um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            180.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_13_3um_nom_clear_sky": {
+        "type": "data",
+        "description": "clear-sky top of atmosphere brightness temperature at the HIRS nominal wavelength of 13.3um",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "clear-sky top of atmosphere brightness temperature at the HIRS nominal wavelength of 13.3um",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            180.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_13_6um_nom": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 13.6um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "HIRS",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 13.6um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            180.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_12_0um_nom": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the AVHRR nominal wavelength of 12.0um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "AVHRR",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the AVHRR nominal wavelength of 12.0um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            180.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_14_5um_nom_sounder": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 14.5um",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "HIRS",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 14.5um",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            160.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_13_3um_nom": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 13.3um",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "HIRS",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 13.3um",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            180.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_4_45um_nom_sounder": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 4.45um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "HIRS",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 4.45um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            160.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_13_9um_nom": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 13.9um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "HIRS",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 13.9um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            180.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_3_75um_nom": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the AVHRR nominal wavelength of 3.75um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "AVHRR",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the AVHRR nominal wavelength of 3.75um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            180.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_11_0um_nom_stddev_3x3": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the AVHRR nominal wavelength of 11.0um standard deviation over a 3x3 pixel array",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "AVHRR",
+          "units": "K",
+          "long_name": "top of atmosphere brightness temperature at the AVHRR nominal wavelength of 11.0um standard deviation over a 3x3 pixel array",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            20.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_4_52um_nom": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 4.52um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "HIRS",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 4.52um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            160.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_14_2um_nom": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 14.2um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "HIRS",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 14.2um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            180.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_3_75um_nom_sounder": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 3.75um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "HIRS",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 3.75um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            180.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_14_9um_nom_sounder": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 14.9um",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "HIRS",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 14.9um",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            160.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_14_7um_nom_sounder": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 14.7um",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "HIRS",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 14.7um",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            160.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_6_7um_nom": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 6.7um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "HIRS",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 6.7um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            180.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "water_cloud_probability": {
+        "type": "data",
+        "description": "probability of a pixel being an water cloud from the Bayesian cloud mask",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "attrs": {
+          "long_name": "probability of a pixel being an water cloud from the Bayesian cloud mask",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            1.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_9_7um_nom": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 9.7um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "HIRS",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 9.7um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            180.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_4_57um_nom_sounder": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 4.57um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "HIRS",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 4.57um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            160.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_7_3um_nom": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 7.3um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "HIRS",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 7.3um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            180.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "total_precipitable_water_nwp": {
+        "type": "data",
+        "description": "Total precipitable water from NWP",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "cm",
+        "attrs": {
+          "units": "cm",
+          "standard_name": "lwe_thickness_of_atmosphere_mass_content_of_water_vapor",
+          "long_name": "Total precipitable water from NWP",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            0.0,
+            10.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "temp_4_46um_nom": {
+        "type": "data",
+        "description": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 4.46um - NOAA CDR",
+        "dimensions": [
+          "time",
+          "latitude",
+          "longitude"
+        ],
+        "unit": "K",
+        "attrs": {
+          "source": "HIRS",
+          "units": "K",
+          "standard_name": "toa_brightness_temperature",
+          "long_name": "top of atmosphere brightness temperature at the HIRS nominal wavelength of 4.46um - NOAA CDR",
+          "valid_range": [
+            -32767,
+            32767
+          ],
+          "actual_range": [
+            160.0,
+            340.0
+          ],
+          "actual_missing": -999.0
+        },
+        "shape": [
+          14,
+          1800,
+          3600
+        ]
+      },
+      "pass_direction": {
+        "type": "auxiliary",
+        "dimensions": [
+          "time"
+        ],
+        "attrs": {},
+        "shape": [
+          14
+        ]
+      }
+    },
+    "datetime": null
+  },
+  "links": [],
+  "assets": {
+    "patmosx-icechunk@FB3W3D3RS02HWABK1TG0": {
+      "href": "file:///home/coder/NCICS-2026/patmosx-icechunk",
+      "type": "application/vnd.zarr+icechunk",
+      "title": "PATMOS-x Virtual Icechunk Store (Local)",
+      "zarr:consolidated": false,
+      "zarr:zarr_format": 3,
+      "icechunk:snapshot_id": "FB3W3D3RS02HWABK1TG0",
+      "roles": [
+        "data",
+        "virtual",
+        "latest-version"
+      ]
+    },
+    "source-netcdf": {
+      "href": "s3://noaa-cdr-patmosx-radiances-and-clouds-pds/",
+      "type": "application/x-netcdf",
+      "title": "PATMOS-x Source NetCDF (NOAA S3)",
+      "roles": [
+        "data"
+      ]
+    }
+  }
+}
